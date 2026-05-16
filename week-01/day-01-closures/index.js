@@ -2,38 +2,49 @@ function createCounter(initial = 0) {
   let count = initial;
   return {
     increment() {
-      return count++;
+      return ++count; // 🔑 сначала увеличиваем, потом возвращаем
     },
     decrement() {
-      return count--;
+      return --count;
     },
     reset() {
-      return (count = 0);
+      count = initial; // 🔑 сброс к исходному значению, а не к 0
+      return count;
     },
     getValue() {
       return count;
     },
   };
 }
-let counter1 = createCounter();
-let counter2 = createCounter();
-counter1.increment();
-counter2.decrement();
-console.log(counter1.getValue());
-console.log(counter2.getValue());
+
+// Проверка счётчиков
+const c1 = createCounter(5);
+const c2 = createCounter(10);
+console.log("📊 Counters:", c1.increment(), c2.decrement(), c1.getValue(), c2.getValue());
 
 function createMemoizer(fn) {
- const cash = new Map();
- return function(arg){
-  if(cash.has(arg)){
-    console.log('♻️ Cache hit')
-    return cash
-  }else{
+  const cache = new Map(); // 🔑 переименовал cash → cache для чистоты
+
+  return function (arg) {
+    if (cache.has(arg)) {
+      console.log("♻️ Cache hit");
+      return cache.get(arg); // 🔑 возвращаем сохранённое ЗНАЧЕНИЕ, а не Map
+    }
+    
     const result = fn(arg);
-    cash.set(arg,result);
-    console.log('🆕 Calculated');
-    return result
-  }
- }
-  
+    cache.set(arg, result);
+    console.log("🆕 Calculated");
+    return result;
+  };
 }
+
+// Проверка мемоизатора
+const square = createMemoizer((n) => {
+  console.log(`⏳ Вычисляю ${n}^2...`);
+  return n * n;
+});
+
+console.log("\n🧠 Memoizer:");
+console.log(square(4)); // 🆕 Calculated → 16
+console.log(square(4)); // ♻️ Cache hit → 16
+console.log(square(7)); // 🆕 Calculated → 49
