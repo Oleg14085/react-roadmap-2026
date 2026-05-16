@@ -24,7 +24,7 @@ console.log(counter2.getValue());
 
 function createMemoizer(fn) {
  const cash = new Map();
- return function fn(arg){
+ return function(arg){
   if(cash.has(arg)){
     console.log('♻️ Cache hit')
     return cash
