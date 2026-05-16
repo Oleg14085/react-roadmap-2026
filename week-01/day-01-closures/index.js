@@ -23,7 +23,7 @@ console.log(counter1.getValue());
 console.log(counter2.getValue());
 
 function createMemoizer(fn) {
- const cash = new Mam();
+ const cash = new Map();
  return function fn(arg){
   if(cash.has(arg)){
     console.log('♻️ Cache hit')
