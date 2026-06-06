@@ -26,7 +26,8 @@ function simplePromiseAll(promises){
 simplePromiseAll([
   new Promise((res) => setTimeout(() => res("A"), 100)),
   new Promise((res) => setTimeout(() => res("B"), 50)),
-  new Promise((_, rej) => setTimeout(() => rej("❌ Fail"), 20)),
+  new Promise((_,rej) => setTimeout(() => rej("❌ Fail"), 20)),
 ])
   .then(console.log)
   .catch(console.error);
+
