@@ -60,3 +60,60 @@ console.log([].join.call(arguments,', '))
 
 printUsers("Аня", "Боря", "Вова"); 
 // Ожидаемый вывод в консоли: "Аня, Боря, Вова"
+const counter = {
+  count: 0,
+  increment() {
+    this.count++;
+    console.log("Счетчик:", this.count);
+  }
+};
+
+// Имитация кнопки
+const button = {
+  click: function(callback) {
+    callback(); // Вызываем переданную функцию
+  }
+};
+
+// Мы хотим, чтобы при клике увеличивался счетчик
+//button.click(counter.increment()) ПРОБЛЕМА: Выведет "Счетчик: NaN", потому что this потерялся!
+button.click(counter.increment.bind(counter));
+
+
+
+
+
+const prices = [150, 300, 50, 999, 200];
+
+// Math.max(150, 300, 50, 999, 200) вернет 999
+// Но у нас массив! Math.max(prices) не сработает (вернет NaN)
+
+// ТВОЕ ЗАДАНИЕ:
+// Используй apply, чтобы передать элементы массива prices в Math.max
+// и найти максимальную цену.
+console.log(Math.max.apply(null,prices))
+
+
+
+// У нас есть объект пользователя и функция для обновления данных. 
+// Нужно вызвать функцию с правильным контекстом И передать аргументы из массива.
+
+const user = {
+  name: "Алекс",
+  email: "alex@example.com"
+};
+
+const updates = ["Новое имя", "newemail@example.com"];
+
+function updateProfile(newName, newEmail) {
+  this.name = newName;
+  this.email = newEmail;
+  console.log(`Обновлено: ${this.name}, ${this.email}`);
+}
+updateProfile.apply(user,updates)
+// ТВОЕ ЗАДАНИЕ:
+// Вызови функцию updateProfile так, чтобы:
+// 1. this указывал на объект user
+// 2. Аргументы newName и newEmail взялись из массива updates
+// Используй apply!
+
