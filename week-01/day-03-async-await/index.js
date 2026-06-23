@@ -22,3 +22,15 @@ async function fetchWithRetry(url, retries = 3, baseDelay = 1000) {
 fetchWithRetry("https://jsonplaceholder.typicode.com/posts/4")
   .then((data) => console.log("✅ Успех:", data.title))
   .catch((err) => console.error("❌ Ошибка:", err.message));
+
+const user1 = {
+  name1: "John Doe",
+  age1: 30,
+  
+}
+const user2 ={
+  name2: "Jane Smith",
+  age2: 25,
+}
+const users = {user1, user2}
+console.log(users)
