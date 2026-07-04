@@ -22,4 +22,3 @@ async function fetchWithRetry(url, retries = 3, baseDelay = 1000) {
 fetchWithRetry("https://jsonplaceholder.typicode.com/posts/4")
   .then((data) => console.log("✅ Успех:", data.title))
   .catch((err) => console.error("❌ Ошибка:", err.message));
-

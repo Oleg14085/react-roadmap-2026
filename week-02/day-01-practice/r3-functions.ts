@@ -22,7 +22,8 @@ function filterProducts(products: Product[], filter: ProductFilter): Product[]{
 // Пример вывода: { electronics: [prod1, prod2], books: [prod3] }
 // Используй .reduce() или цикл + присваивание в объект
 function groupByTag(products: Product[], tag: string): Record<string, Product[]> {
-  return products.reduce((acc, product) => {
+  //const acc: Record<string,Product[]> = {}
+    return products.reduce((acc, product) => {
     // 1. Проверяем, есть ли у продукта этот тег
     if (product.tags.includes(tag)) {
       // 2. Если группы ещё нет — создаём пустой массив
@@ -33,7 +34,7 @@ function groupByTag(products: Product[], tag: string): Record<string, Product[]>
       acc[tag].push(product);
     }
     return acc;
-  }, {} as Record<string, Product[]>);
+  },{}as Record<string,Product[]>);
 }
 const products: Product[] = [
   { id: 1, name: "Laptop", price: 1200, inStock: true, tags: ["electronics", "sale"] },
