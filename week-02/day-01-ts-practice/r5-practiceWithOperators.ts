@@ -2,10 +2,10 @@ export {}
 type ThemeColor = string | [number, number, number];
 type ThemeConfig = Record<string, ThemeColor>;
 const appTheme = {
-    primery:'#ff0000',
+    primary:'#ff0000',
     secondary:[0,255,0]
 } satisfies ThemeConfig;
-appTheme.primery.toUpperCase();
+appTheme.primary.toUpperCase();
 appTheme.secondary.push(128);
 
 
