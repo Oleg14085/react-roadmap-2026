@@ -24,8 +24,11 @@ function RegisterFormComponent() {
         subscribe: false
     })
 
-    const updateField = (field: keyof RegisterForm, value: string | number | boolean) => {
-        setForm((prev: RegisterForm) => {
+    function updateField<K extends keyof RegisterForm>(
+        field: K,
+        value: RegisterForm[K]
+    ) {
+        setForm((prev) => {
             return {
                 ...prev,
                 [field]: value
