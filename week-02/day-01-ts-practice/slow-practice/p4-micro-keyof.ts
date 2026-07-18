@@ -86,4 +86,4 @@ console.log(updated.theme); // expected: "dark"
 console.log(defaultSettings.theme); // expected: "light" (исходный не изменён!)
 
 // Тест 4: TS должен ругаться, если тип значения не совпадает
-updateSetting(defaultSettings, "fontSize", "big"); // ❌ Раскомментируй и проверь, что TS подсветит ошибку
+//updateSetting(defaultSettings, "fontSize", "big"); // ❌ Раскомментируй и проверь, что TS подсветит ошибку
