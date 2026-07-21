@@ -34,7 +34,7 @@ function getSettingType(key: SettingsKeys): string {
 // 💡 Тип возврата Settings[keyof Settings] — это union всех возможных значений интерфейса: "light" | "dark" | "ru" | "en" | "es" | boolean | number. TS сам выведет его.
 function getDefaultValue(
   key: SettingsKeys,
-): Settings[keyof Settings] | undefined {
+): Settings[keyof Settings] {
   // Возвращаем значение в зависимости от ключа
   if (key === "theme") {
     return "light"; // ✅ Тип "light" входит в Settings[keyof Settings]
@@ -48,6 +48,7 @@ function getDefaultValue(
   if (key === "fontSize") {
     return 16; // ✅ number входит в Settings[keyof Settings]
   }
+  throw new Error(`Unknown key: ${key}`)
   // TS знает, что key — это один из 4 ключей, поэтому unreachable code не нужен
 }
 // 5
