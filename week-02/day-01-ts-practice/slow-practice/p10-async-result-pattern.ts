@@ -50,7 +50,7 @@ function matchResult<T, R>(
   if (isError(result)) {
     return handlers.onError(result.message);
   }
-   throw new Error("Unknown state")
+  throw new Error("Unknown state");
 }
 
 const loading: Loading = { state: "loading" };
@@ -60,9 +60,11 @@ const error: ErrorState = { state: "error", message: "Network error" };
 console.log(matchResult(loading, handlers));
 console.log(matchResult(success, handlers));
 console.log(matchResult(error, handlers));
-const numResult: AsyncResult<number> = { state: 'success', data: 42 };
-console.log(matchResult(numResult, {
-  onLoading: () => -1,
-  onSuccess: (n) => n * 2,
-  onError: (message) => -999
-})); // expected: 84
+const numResult: AsyncResult<number> = { state: "success", data: 42 };
+console.log(
+  matchResult(numResult, {
+    onLoading: () => -1,
+    onSuccess: (n) => n * 2,
+    onError: (message) => -999,
+  }),
+); // expected: 84
